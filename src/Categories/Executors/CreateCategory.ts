@@ -1,4 +1,4 @@
-import DbQuery from '../Abstract/DbQuery'
+import DbQuery from '../../Abstract/DbQuery'
 
 export default class CreateCategory extends DbQuery<Promise<unknown>>{
 

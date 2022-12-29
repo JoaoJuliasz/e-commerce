@@ -5,6 +5,7 @@ create table if not exists products (
     name varchar(255) not null unique,
     description varchar(255),
     value float not null,
+    image varchar(255) not null,
     category_id int references categories (id)
 );
 

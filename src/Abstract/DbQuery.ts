@@ -1,4 +1,4 @@
-import DB from '../../database/Database'
+import DB from '../database/Database'
 
 export default abstract class DbQuery<T> {
 

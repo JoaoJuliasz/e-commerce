@@ -1,5 +1,5 @@
 import HttpMethods from '../Abstract/HttpMethods'
-import { Params } from '../types'
+import { Params } from '../../types/types'
 
 export default class HttpCreateCategory extends HttpMethods<Promise<any>> {
 
