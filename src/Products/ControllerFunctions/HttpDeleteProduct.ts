@@ -1,7 +1,7 @@
 import HttpMethods from "../Abstract/HttpMethods";
 import { Params } from "../../types/types";
 
-export default class HttpGetCategory extends HttpMethods<Promise<unknown>>{
+export default class HttpDeleteProduct extends HttpMethods<Promise<unknown>>{
 
     constructor(private params: Params) {
         super()
@@ -9,18 +9,20 @@ export default class HttpGetCategory extends HttpMethods<Promise<unknown>>{
 
     async execute() {
         const { req, res } = this.params
-        const categoryId = Number(req.params.id)
+        const productId = Number(req.params.id)
 
-        const category = await this.categoriesModel.getCategory(categoryId)
-        if(category.length === 0) {
+        const deletedProduct = await this.productsModel.deleteProduct(productId)
+
+        if(deletedProduct === 0) {
             return res.status(400).json({
-                err: `Category with id ${categoryId} not exists`
+                error: `Product with id ${productId}, not exists`
             })
         }
 
         return res.status(200).json({
-            content: category
+            message: 'Product deleted!'
         })
+
     }
 
 }

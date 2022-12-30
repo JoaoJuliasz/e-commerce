@@ -10,6 +10,7 @@ export default class CategoriesRouter {
 
         categoriesRouter.get('/', this.categoriesController.httpGetCategories)
         categoriesRouter.get('/:id', this.categoriesController.httpGetCategory)
+        categoriesRouter.get('/:id/products', this.categoriesController.httpGetCategoryProducts)
         categoriesRouter.post('/', this.categoriesController.httpCreateCategory)
         categoriesRouter.put('/:id', this.categoriesController.httpUpdateCategory)
         categoriesRouter.delete('/:id', this.categoriesController.httpDeleteCategory)

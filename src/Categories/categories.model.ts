@@ -6,6 +6,7 @@ import { Response } from 'express'
 import UpdateCategory from "./Executors/UpdateCategory"
 import GetCategory from "./Executors/GetCategory"
 import DeleteCategory from "./Executors/DeleteCategory"
+import GetCategoryProducts from "./Executors/GetCategoryProducts"
 
 export default class CategoriesModel {
 
@@ -15,6 +16,10 @@ export default class CategoriesModel {
 
     async getCategory(categoryId: number) {
         return await new GetCategory(categoryId).execute()
+    }
+
+    async getCategoryProducts(categoryId: number) {
+        return await new GetCategoryProducts(categoryId).execute()
     }
 
     async createCategory(category: string) {

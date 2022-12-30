@@ -3,27 +3,35 @@ import HttpCreateCategory from './ControllerFunctions/HttpCreateCategory'
 import HttpDeleteCategory from './ControllerFunctions/HttpDeleteCategory'
 import HttpGetCategories from './ControllerFunctions/HttpGetCategories'
 import HttpGetCategory from './ControllerFunctions/HttpGetCategory'
+import HttpGetCategoryProducts from './ControllerFunctions/HttpGetCategoryProducts'
 import HttpUpdateCategory from './ControllerFunctions/HttpUpdateCategory'
 
 export default class CategoriesController {
 
-    async httpGetCategories(_: Request, res: Response) {
-        await new HttpGetCategories(res).execute()
+    httpGetCategories(_: Request, res: Response) {
+        new HttpGetCategories(res).execute()
     }
 
-    async httpGetCategory(req: Request, res: Response) {
-        await new HttpGetCategory({req, res}).execute()
+    httpGetCategory(req: Request, res: Response) {
+        new HttpGetCategory({ req, res }).execute()
     }
 
-    async httpCreateCategory(req: Request, res: Response) {
-        await new HttpCreateCategory({ req, res }).execute()
+    httpGetCategoryProducts(req: Request, res: Response) {
+        new HttpGetCategoryProducts({ req, res }).execute()
     }
 
-    async httpUpdateCategory(req: Request, res: Response) {
-        await new HttpUpdateCategory({ req, res }).execute()
+    httpCreateCategory(req: Request, res: Response) {
+        new HttpCreateCategory({ req, res }).execute()
     }
 
-    async httpDeleteCategory(req: Request, res: Response) {
-        await new HttpDeleteCategory({req, res}).execute()
+    httpUpdateCategory(req: Request, res: Response) {
+        new HttpUpdateCategory({ req, res }).execute()
     }
+
+    httpDeleteCategory(req: Request, res: Response) {
+        new HttpDeleteCategory({ req, res }).execute()
+    }
+
+    //getcategoryProducts
+    //select * from products p left join categories c on p.category_id = p.id;
 }
