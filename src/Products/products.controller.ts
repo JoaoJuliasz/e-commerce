@@ -3,6 +3,7 @@ import HttpCreateProduct from './ControllerFunctions/HttpCreateProduct'
 import HttpDeleteProduct from './ControllerFunctions/HttpDeleteProduct'
 import HttpGetProduct from './ControllerFunctions/HttpGetProduct'
 import HttpGetProducts from './ControllerFunctions/HttpGetProducts'
+import HttpQueryProducts from './ControllerFunctions/HttpQueryProducts'
 import HttpUpdateProduct from './ControllerFunctions/HttpUpdateProduct'
 
 export default class ProductsController {
@@ -14,6 +15,10 @@ export default class ProductsController {
 
     httpGetProduct(req: Request, res: Response) {
         return new HttpGetProduct({ req, res }).execute()
+    }
+
+    httpQueryProducts(req: Request<{}, {}, {}, { q: string }>, res: Response) {
+        return new HttpQueryProducts({req, res}).execute()
     }
 
     httpCreateProduct(req: Request, res: Response) {

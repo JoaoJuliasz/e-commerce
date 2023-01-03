@@ -9,6 +9,7 @@ export default class ProductsRouter {
         const productsRouter = express.Router()
 
         productsRouter.get('/', this.productsController.httpGetProducts)
+        productsRouter.get('/query', this.productsController.httpQueryProducts)
         productsRouter.get('/:id', this.productsController.httpGetProduct)
         productsRouter.post('/', this.productsController.httpCreateProduct)
         productsRouter.put('/:id', this.productsController.httpUpdateProduct)
