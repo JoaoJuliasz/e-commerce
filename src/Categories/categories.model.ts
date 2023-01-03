@@ -23,7 +23,7 @@ export default class CategoriesModel {
     }
 
     async createCategory(category: string) {
-        return await new CreateCategory(category).execute()
+        return  await new CreateCategory(category).execute()
     }
 
     async validateValue(name: string, res: Response) {

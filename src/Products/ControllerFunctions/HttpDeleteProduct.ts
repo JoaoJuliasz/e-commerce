@@ -1,5 +1,6 @@
 import HttpMethods from "../Abstract/HttpMethods";
 import { Params } from "../../types/types";
+import { QueryResult } from "pg";
 
 export default class HttpDeleteProduct extends HttpMethods<Promise<unknown>>{
 
@@ -13,7 +14,7 @@ export default class HttpDeleteProduct extends HttpMethods<Promise<unknown>>{
 
         const deletedProduct = await this.productsModel.deleteProduct(productId)
 
-        if(deletedProduct === 0) {
+        if((deletedProduct as QueryResult).rowCount === 0) {
             return res.status(400).json({
                 error: `Product with id ${productId}, not exists`
             })

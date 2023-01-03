@@ -1,13 +1,15 @@
 import DbQuery from "../../Abstract/DbQuery";
 
-export default class GetCategory extends DbQuery<Promise<unknown>>{
+export default class GetCategory extends DbQuery {
 
     constructor(private categoryId: number) {
         super()
     }
 
     async execute() {
-        const category = await (await this.DB.start().query('select * from categories where id = $1', [this.categoryId])).rows
+
+        const queryString = `select * from categories where id = ${this.categoryId}`
+        const category = await this.query(queryString)
         return category
     }
 

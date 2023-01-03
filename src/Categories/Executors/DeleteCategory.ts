@@ -1,13 +1,13 @@
 import DbQuery from "../../Abstract/DbQuery";
 
-export default class DeleteCategory extends DbQuery<Promise<unknown>> {
+export default class DeleteCategory extends DbQuery {
 
     constructor(private categoryId: number) {
         super()
     }
 
     async execute() {
-        const deletedCategory = await (await this.DB.start().query('delete from categories where id = $1', [this.categoryId])).rowCount
+        const deletedCategory = await this.query(`delete from categories where id = ${this.categoryId}`)
         return deletedCategory
     }
 

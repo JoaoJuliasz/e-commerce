@@ -1,14 +1,14 @@
 import DbQuery from "../../Abstract/DbQuery";
 
-export default class DeleteProduct extends DbQuery<Promise<number>> {
+export default class DeleteProduct extends DbQuery {
 
     constructor(private productId: number) {
         super()
     }
 
-    async execute() {
-
-        const deletedProduct = (await this.DB.start().query('delete from products where id = $1', [this.productId])).rowCount
+        async execute() {
+        const queryString = `delete from products where id = ${this.productId}` 
+        const deletedProduct = await this.query(queryString)
         return deletedProduct
 
     }

@@ -1,5 +1,6 @@
 import HttpMethods from "../Abstract/HttpMethods";
-import { Params } from "../../types/types";
+import { Params, QueryError } from "../../types/types";
+import { QueryResult } from "pg";
 
 export default class HttpGetProduct extends HttpMethods<Promise<unknown>>{
 
@@ -12,17 +13,20 @@ export default class HttpGetProduct extends HttpMethods<Promise<unknown>>{
         const productId = Number(req.params.id)
 
         const product = await this.productsModel.getProduct(productId)
-        if(typeof product === 'string') {
+        if((product as QueryError).error) {
             return res.status(400).json({
-                error: product
+                error: (product as QueryError).error
             })
         }
-        if(product.length === 0) {
+
+        const rows = (product as QueryResult).rows
+        
+        if(rows.length === 0) {
             return res.status(400).json({
                 error: `Product with id ${productId} not exists!`
             })
         }
-        return res.status(200).json(product)
+        return res.status(200).json(rows[0])
     }
 
 }

@@ -1,4 +1,5 @@
-import { Params } from "../../types/types";
+import { QueryResult } from "pg";
+import { Params, QueryError } from "../../types/types";
 import HttpMethods from "../Abstract/HttpMethods";
 
 export default class HttpCreateProduct extends HttpMethods<Promise<unknown>> {
@@ -11,15 +12,15 @@ export default class HttpCreateProduct extends HttpMethods<Promise<unknown>> {
         const { req, res } = this.params
         const productBody = req.body
         const createdProduct = await this.productsModel.createProduct(productBody)
-        if (typeof createdProduct === 'string') {
+        if ((createdProduct as QueryError).error) {
             return res.status(400).json({
-                error: createdProduct
+                error: (createdProduct as QueryError).message
             })
         }
         
         return res.status(201).json({
             message: 'Product created!',
-            product: productBody
+            product: (createdProduct as QueryResult).rows[0]
         })
     }
 

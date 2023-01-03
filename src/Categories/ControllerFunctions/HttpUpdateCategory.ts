@@ -1,4 +1,6 @@
 import { Request, Response } from 'express'
+import { QueryResult } from 'pg'
+import { QueryError } from '../../types/types'
 import HttpMethods from '../Abstract/HttpMethods'
 
 export default class HttpUpdateCategory extends HttpMethods<Promise<any>>{
@@ -18,17 +20,14 @@ export default class HttpUpdateCategory extends HttpMethods<Promise<any>>{
             })
         }
         const updateCategory = await this.categoriesModel.updateCategory(category.name, categoryId)
-        if (typeof updateCategory === 'string') {
+        if ((updateCategory as QueryError).error) {
             return res.status(400).json({
-                err: updateCategory
+                err: (updateCategory as QueryError).message
             })
         }
         return res.status(200).json({
             message: 'Category updated!',
-            content: {
-                id: categoryId,
-                name: category.name
-            }
+            category: (updateCategory as QueryResult).rows[0]
         })
     }
 

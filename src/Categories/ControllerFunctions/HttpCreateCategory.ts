@@ -1,5 +1,6 @@
 import HttpMethods from '../Abstract/HttpMethods'
-import { Params } from '../../types/types'
+import { Params, QueryError } from '../../types/types'
+import { QueryResult } from 'pg'
 
 export default class HttpCreateCategory extends HttpMethods<Promise<any>> {
 
@@ -16,12 +17,15 @@ export default class HttpCreateCategory extends HttpMethods<Promise<any>> {
             })
         }
         const createCategory = await this.categoriesModel.createCategory(category.name)
-        if (typeof createCategory === 'string') {
+        if ((createCategory as QueryError).error) {
             return res.status(400).json({
-                err: createCategory
+                err: (createCategory as QueryError)["message"]
             })
         }
-        return res.status(201).json(category)
+        return res.status(201).json({
+            message: "Category created!",
+            category: (createCategory as QueryResult).rows[0]
+        })
     }
 
 }

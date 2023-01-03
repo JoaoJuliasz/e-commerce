@@ -1,9 +1,10 @@
 import DbQuery from "../../Abstract/DbQuery"
 
-export default class GetCategories extends DbQuery<Promise<unknown>>{
+export default class GetCategories extends DbQuery {
 
     async execute() {
-        const categories = await (await this.DB.start().query("select * from categories")).rows
+        const categories = await this.query("select * from categories")
+        console.log(categories)
         return categories
     }
 

@@ -1,5 +1,6 @@
 import HttpMethods from "../Abstract/HttpMethods";
 import { Params } from "../../types/types";
+import { QueryResult } from "pg";
 
 export default class HttpDeleteCategory extends HttpMethods<any> {
 
@@ -13,7 +14,7 @@ export default class HttpDeleteCategory extends HttpMethods<any> {
 
         const deletedCategory = await this.categoriesModel.deleteCategory(categoryId)
 
-        if(deletedCategory === 0) {
+        if((deletedCategory as QueryResult).rowCount === 0) {
             return res.status(400).json({
                 err: `Category with id ${categoryId} not exists`
             })

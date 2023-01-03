@@ -1,7 +1,7 @@
 import DbQuery from "../../Abstract/DbQuery";
 import { Product } from "../types";
 
-export default class CreateProduct extends DbQuery<Promise<unknown>> {
+export default class CreateProduct extends DbQuery {
 
     constructor(private productBody: Product) {
         super()
@@ -9,13 +9,15 @@ export default class CreateProduct extends DbQuery<Promise<unknown>> {
 
     async execute() {
         try {
-            const createdProduct = await this.DB.start()
-                .query('insert into products (name, description, value, image, category_id) values ($1, $2, $3, $4, $5)',
-                    [this.productBody.name, this.productBody.description, this.productBody.value, this.productBody.image, this.productBody.category_id])
+            const queryString = `insert into products (name, description, value, image, category_id)
+            values ('${this.productBody.name}', '${this.productBody.description}',
+             ${this.productBody.value}, '${this.productBody.image}',
+              ${this.productBody.category_id}) returning *`
+
+            const createdProduct = await this.query(queryString)
             return createdProduct
         } catch (err: any) {
-            return err.message
+            return { message: err.message, error: err.name }
         }
     }
-
 }

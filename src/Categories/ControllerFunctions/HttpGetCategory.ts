@@ -1,5 +1,6 @@
 import HttpMethods from "../Abstract/HttpMethods";
 import { Params } from "../../types/types";
+import { QueryResult } from "pg";
 
 export default class HttpGetCategory extends HttpMethods<Promise<unknown>>{
 
@@ -11,7 +12,7 @@ export default class HttpGetCategory extends HttpMethods<Promise<unknown>>{
         const { req, res } = this.params
         const categoryId = Number(req.params.id)
 
-        const category = await this.categoriesModel.getCategory(categoryId)
+        const category = (await this.categoriesModel.getCategory(categoryId) as QueryResult).rows
         if(category.length === 0) {
             return res.status(400).json({
                 err: `Category with id ${categoryId} not exists`
@@ -19,7 +20,7 @@ export default class HttpGetCategory extends HttpMethods<Promise<unknown>>{
         }
 
         return res.status(200).json({
-            content: category
+            content: category[0]
         })
     }
 
