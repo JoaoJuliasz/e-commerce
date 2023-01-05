@@ -13,12 +13,12 @@ export default class HttpAuthenticateUser extends HttpMethods<Promise<unknown>> 
         const newUser = req.body
         const response = await this.usersModel.authenticateUser(newUser)
 
-        // if((response as QueryError).error) {
-        //     res.status(400).json({
-        //         error: (response as QueryError).message
-        //     })
-        // }
-        // res.status(201).json((response as QueryResult).rows)
+        if (response.error) {
+            res.status(400).json({
+                error: response.message
+            })
+        }
+        res.status(201).json(response)
     }
 
 }

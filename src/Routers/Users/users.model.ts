@@ -15,9 +15,10 @@ export default class UsersModel {
         return new CreateUser(newUser).execute()
     }
 
-    async authenticateUser(userLogin: {email: string, password: string}) {
-        const user = await new GetUserByEmail(userLogin).execute()
-        return await new AuthenticateUser(userLogin.password, (user as QueryResult).rows[0]).execute()
+    async authenticateUser(userLogin: { email: string, password: string }) {
+        const user = (await new GetUserByEmail(userLogin).execute() as QueryResult).rows[0]
+        const authenticateUser = await new AuthenticateUser(userLogin.password, user).execute()
+        return authenticateUser ? user : { error: 'error', message: 'User email/password is incorrect!' }
     }
 
 }
