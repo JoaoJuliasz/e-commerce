@@ -1,7 +1,6 @@
-import { QueryResult } from "pg";
-import AuthenticateUser from "./Executors/AuthenticateUser/AuthenticateUser";
-import GetUserByEmail from "./Executors/AuthenticateUser/GetUserByEmail";
+import AuthenticatedUser from "./Executors/AuthenticateUser/AuthenticatedUser";
 import CreateUser from "./Executors/CreateUser";
+import GetUser from "./Executors/GetUser";
 import GetUsers from "./Executors/GetUsers";
 import { NewUser } from "./types";
 
@@ -15,10 +14,12 @@ export default class UsersModel {
         return new CreateUser(newUser).execute()
     }
 
-    async authenticateUser(userLogin: { email: string, password: string }) {
-        const user = (await new GetUserByEmail(userLogin).execute() as QueryResult).rows[0]
-        const authenticateUser = await new AuthenticateUser(userLogin.password, user).execute()
-        return authenticateUser ? user : { error: 'error', message: 'User email/password is incorrect!' }
+    async getUser(userId: number) {
+        return await new GetUser(userId).execute()
+    }
+
+    authenticateUser(userLogin: { email: string, password: string }) {
+        return new AuthenticatedUser(userLogin).execute()
     }
 
 }

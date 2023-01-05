@@ -8,9 +8,9 @@ export default class GetUserByEmail extends DbQuery {
 
     async execute() {
 
-        const queryString = `select * from users where email = '${this.userLogin.email}'`
+        const queryString = `select email, password, id from users where email = '${this.userLogin.email}'`
         const response = await this.query(queryString)
         return response
     }
 
-}
+}      
