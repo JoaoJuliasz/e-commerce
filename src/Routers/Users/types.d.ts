@@ -7,5 +7,5 @@ export type NewUser = {
 export type User = {
     id: number
     creationDate: Date,
-    birthDay: Date | null,
-} & User
+    birthday: Date | null,
+} & NewUser

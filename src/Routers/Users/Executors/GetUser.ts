@@ -2,7 +2,7 @@ import DbQuery from "../../../Abstract/DbQuery";
 
 export default class GetUser extends DbQuery {
 
-    constructor(private userId: number) {
+    constructor(private userId: string) {
         super()
     }
 

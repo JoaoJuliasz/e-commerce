@@ -8,4 +8,4 @@ export default class GetUsers extends DbQuery {
         return response
     }
 
-}
+} 

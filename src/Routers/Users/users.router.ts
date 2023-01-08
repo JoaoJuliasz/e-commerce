@@ -10,7 +10,9 @@ export default class UsersRouter {
         const usersRouter = express.Router()
 
         usersRouter.get('/', this.usersController.httpGetUsers)
+        usersRouter.get('/:id', this.usersController.httpGetUser)
         usersRouter.post('/', this.usersController.httpCreateUser)
+        usersRouter.put('/:id', this.usersController.httpUpdateUser)
         usersRouter.post('/authenticate', this.usersController.httpAuthenticateUser)
 
         return usersRouter

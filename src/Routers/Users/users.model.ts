@@ -2,7 +2,8 @@ import AuthenticatedUser from "./Executors/AuthenticateUser/AuthenticatedUser";
 import CreateUser from "./Executors/CreateUser";
 import GetUser from "./Executors/GetUser";
 import GetUsers from "./Executors/GetUsers";
-import { NewUser } from "./types";
+import UpdateUser from "./Executors/UpdateUser";
+import { NewUser, User } from "./types";
 
 export default class UsersModel {
 
@@ -14,8 +15,12 @@ export default class UsersModel {
         return new CreateUser(newUser).execute()
     }
 
-    async getUser(userId: number) {
-        return await new GetUser(userId).execute()
+    getUser(userId: string) {
+        return new GetUser(userId).execute()
+    }
+
+    updateUser(user: Omit<User, 'password'>, userId: string) {
+        return new UpdateUser(user, userId).execute()
     }
 
     authenticateUser(userLogin: { email: string, password: string }) {
