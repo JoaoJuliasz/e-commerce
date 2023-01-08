@@ -2,6 +2,7 @@ import AuthenticatedUser from "./Executors/AuthenticateUser/AuthenticatedUser";
 import CreateUser from "./Executors/CreateUser";
 import DeleteUser from "./Executors/DeleteUser";
 import GetUser from "./Executors/GetUser";
+import GetUserProducts from "./Executors/GetUserProducts";
 import GetUsers from "./Executors/GetUsers";
 import UpdateUser from "./Executors/UpdateUser";
 import { NewUser, User } from "./types";
@@ -20,6 +21,10 @@ export default class UsersModel {
         return new GetUser(userId).execute()
     }
 
+    getUserProducts(userId: string) {
+        return new GetUserProducts(userId).execute()
+    }
+
     updateUser(user: Omit<User, 'password'>, userId: string) {
         return new UpdateUser(user, userId).execute()
     }
@@ -27,7 +32,6 @@ export default class UsersModel {
     authenticateUser(userLogin: { email: string, password: string }) {
         return new AuthenticatedUser(userLogin).execute()
     }
-
 
     deleteUser(userId: string) {
         return new DeleteUser(userId).execute()

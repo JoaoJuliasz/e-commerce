@@ -31,7 +31,4 @@ export default class CategoriesController {
     httpDeleteCategory(req: Request, res: Response) {
         new HttpDeleteCategory({ req, res }).execute()
     }
-
-    //getcategoryProducts
-    //select * from products p left join categories c on p.category_id = p.id;
 }

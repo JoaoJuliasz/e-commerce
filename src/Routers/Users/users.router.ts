@@ -11,6 +11,7 @@ export default class UsersRouter {
 
         usersRouter.get('/', this.usersController.httpGetUsers)
         usersRouter.get('/:id', this.usersController.httpGetUser)
+        usersRouter.get('/:id/products', this.usersController.httpGetUserProducts)
         usersRouter.post('/', this.usersController.httpCreateUser)
         usersRouter.put('/:id', this.usersController.httpUpdateUser)
         usersRouter.post('/authenticate', this.usersController.httpAuthenticateUser)
