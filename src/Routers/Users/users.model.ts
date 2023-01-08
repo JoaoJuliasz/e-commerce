@@ -1,5 +1,6 @@
 import AuthenticatedUser from "./Executors/AuthenticateUser/AuthenticatedUser";
 import CreateUser from "./Executors/CreateUser";
+import DeleteUser from "./Executors/DeleteUser";
 import GetUser from "./Executors/GetUser";
 import GetUsers from "./Executors/GetUsers";
 import UpdateUser from "./Executors/UpdateUser";
@@ -25,6 +26,11 @@ export default class UsersModel {
 
     authenticateUser(userLogin: { email: string, password: string }) {
         return new AuthenticatedUser(userLogin).execute()
+    }
+
+
+    deleteUser(userId: string) {
+        return new DeleteUser(userId).execute()
     }
 
 }

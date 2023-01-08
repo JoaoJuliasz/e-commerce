@@ -9,10 +9,10 @@ export default class CreateProduct extends DbQuery {
 
     async execute() {
         try {
-            const queryString = `insert into products (name, description, value, image, category_id)
+            const queryString = `insert into products (name, description, value, image, category_id, user_id)
             values ('${this.productBody.name}', '${this.productBody.description}',
              ${this.productBody.value}, '${this.productBody.image}',
-              ${this.productBody.category_id}) returning *`
+              ${this.productBody.category_id}, ${this.productBody.category_id}) returning *`
 
             const createdProduct = await this.query(queryString)
             return createdProduct

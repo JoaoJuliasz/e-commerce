@@ -14,6 +14,7 @@ export default class UsersRouter {
         usersRouter.post('/', this.usersController.httpCreateUser)
         usersRouter.put('/:id', this.usersController.httpUpdateUser)
         usersRouter.post('/authenticate', this.usersController.httpAuthenticateUser)
+        usersRouter.delete('/:id', this.usersController.httpDeleteUser)
 
         return usersRouter
     }

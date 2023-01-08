@@ -4,5 +4,6 @@ export type Product = {
     description: string,
     value: number,
     image: string,
-    category_id: number
+    category_id: number,
+    user_id: number
 }

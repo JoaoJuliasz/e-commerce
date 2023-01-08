@@ -10,7 +10,7 @@ export default class UpdateProduct extends DbQuery {
     async execute() {
         const queryString = `update products 
         set name = '${this.productBody.name}', description = '${this.productBody.description}', value = ${this.productBody.value}, image = '${this.productBody.image}',
-         category_id = ${this.productBody.category_id}
+         category_id = ${this.productBody.category_id}, user_id = ${this.productBody.user_id}
         where id = ${this.productId} returning *`
         const updatedProduct = await this.query(queryString)
         return updatedProduct
