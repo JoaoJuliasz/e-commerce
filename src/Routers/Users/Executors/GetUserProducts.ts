@@ -8,7 +8,6 @@ export default class GetUserProducts extends DbQuery {
 
     execute() {
         const queryString = `select * from products where user_id = ${this.userId}`
-        console.log(queryString)
         const response = this.query(queryString)
         return response
     }
