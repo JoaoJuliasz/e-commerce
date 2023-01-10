@@ -37,3 +37,10 @@ create table if not exists products_history (
     product_id int references products (id),
     user_id int references users (id)
 )
+
+create table if not exists user_favorites(
+    id serial primary key,
+    favorite_date bigint not null,
+    product_id int references products (id),
+    user_id int references users (id)
+);

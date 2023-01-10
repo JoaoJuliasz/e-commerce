@@ -7,7 +7,7 @@ export default class GetUserHistory extends DbQuery {
     }
 
     execute() {
-        const queryString = `select p.id, name, value, category_id, ph.id as history_id
+        const queryString = `select p.id as product_id, name, value, category_id, ph.id as history_id
          from products p left join products_history ph on p.id = ph.product_id where ph.user_id = ${this.userId}`
         const response = this.query(queryString)
         return response
