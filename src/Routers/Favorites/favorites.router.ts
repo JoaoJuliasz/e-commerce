@@ -10,6 +10,8 @@ export default class FavoriteRouter {
 
         favoriteRouter.post('/', this.favoriteController.httpGetFavorites)
         favoriteRouter.post('/add', this.favoriteController.httpAddItemOnFavorites)
+        favoriteRouter.delete('/:id', this.favoriteController.httpDeleteItemFromFavorites)
+        favoriteRouter.post('/clear', this.favoriteController.httpClearFavorites)
 
         return favoriteRouter
     }

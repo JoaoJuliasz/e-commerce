@@ -1,5 +1,7 @@
 import { Request, Response } from 'express'
 import HttpAddItemFavorites from './ControllerFunctions/HttpAddItemFavorites'
+import HttpClearFavorites from './ControllerFunctions/HttpClearFavorites'
+import HttpDeleteItemFavorites from './ControllerFunctions/HttpDeleteItemFavorites'
 import HttpGetFavorites from './ControllerFunctions/HttpGetFavorites'
 
 export default class FavoriteController {
@@ -10,6 +12,14 @@ export default class FavoriteController {
 
     httpAddItemOnFavorites(req: Request, res: Response) {
         return new HttpAddItemFavorites({ req, res }).execute()
+    }
+
+    httpDeleteItemFromFavorites(req: Request, res: Response) {
+        return new HttpDeleteItemFavorites({ req, res }).execute()
+    }
+
+    httpClearFavorites(req: Request, res: Response) {
+        return new HttpClearFavorites({ req, res }).execute()
     }
 
 }
