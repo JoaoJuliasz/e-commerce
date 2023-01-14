@@ -1,4 +1,5 @@
 import express from 'express'
+import CartRouter from '../Routers/Cart/cart.router'
 import CategoriesRouter from '../Routers/Categories/categories.router'
 import FavoriteRouter from '../Routers/Favorites/favorites.router'
 import HistoryRouter from '../Routers/History/history.router'
@@ -17,6 +18,7 @@ export default class App {
         app.use('/users', new UsersRouter().execute())
         app.use('/history', new HistoryRouter().execute())
         app.use('/favorite', new FavoriteRouter().execute())
+        app.use('/cart', new CartRouter().execute())
 
         return app
     }

@@ -44,3 +44,16 @@ create table if not exists user_favorites(
     product_id int references products (id),
     user_id int references users (id)
 );
+
+create table if not exists user_cart(
+    id serial primary key,
+    user_id int references users (id),
+    payment_method varchar(255)
+);
+
+create table if not exists cart_products (
+    cart_id int references user_cart(id),
+    product_id int,
+    constraint fk_product foreign key (product_id) references products (id),
+    product_quantity int not null
+);

@@ -11,7 +11,6 @@ export default class HttpGetCategories extends HttpMethods<Promise<void>>{
     async execute() {
         const categories = (await this.categoriesModel.getCategories() as QueryResult).rows
         this.res.status(200).json({ content: categories })
-
     }
 
 }
