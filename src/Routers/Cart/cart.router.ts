@@ -12,6 +12,7 @@ export default class CartRouter {
         cartRouter.get('/:id', this.cartController.httpGetCart)
         cartRouter.post('/add-item', this.cartController.httpCreateCart)
         cartRouter.put('/:id', this.cartController.httpAddItemOnCart)
+        cartRouter.delete('/:id', this.cartController.httpDeleteCart)
 
         return cartRouter
 

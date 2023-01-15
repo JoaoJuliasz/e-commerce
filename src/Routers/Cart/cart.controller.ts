@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import HttpCreateCart from './ControllerFunctions/HttpCreateCart'
 import HttpAddItemOnCart from './ControllerFunctions/HttpAddItemOnCart'
 import HttpGetCart from './ControllerFunctions/HttpGetCart'
+import HttpDeleteCart from './ControllerFunctions/HttpDeleteCart'
 
 export default class CartController {
 
@@ -15,6 +16,10 @@ export default class CartController {
 
     httpAddItemOnCart(req: Request, res: Response) {
         return new HttpAddItemOnCart({ req, res }).execute()
+    }
+
+    httpDeleteCart(req: Request, res: Response) {
+        return new HttpDeleteCart({ req, res }).execute()
     }
 
 }

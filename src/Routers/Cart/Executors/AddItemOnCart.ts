@@ -8,7 +8,6 @@ export default class AddItemOnCart extends DbQuery {
     }
 
     execute() {
-        console.log(this.cartId)
         const queryString = `insert into cart_products (cart_id, product_id, product_quantity)
             values (${this.cartId}, ${this.cartBody.product_id}, ${this.cartBody.product_quantity}) returning *
         `

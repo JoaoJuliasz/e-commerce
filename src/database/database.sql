@@ -54,6 +54,6 @@ create table if not exists user_cart(
 create table if not exists cart_products (
     cart_id int references user_cart(id),
     product_id int references products (id),
-    product_quantity int not null
+    product_quantity int not null,
     primary key(product_id)
 );
