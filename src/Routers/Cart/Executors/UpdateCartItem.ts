@@ -7,14 +7,9 @@ export default class UpdateCartItem extends DbQuery {
     }
 
     execute() {
-        console.log(this.cartBody)
-        // const queryString = `update cart_products 
-        // set product_quantity = ${this.cartBody.product_quantity}
-        // where product_id = ${this.cartBody.product_id} returning *
-        // `
         const queryString = `insert into cart_products (cart_id, product_id, product_quantity)
         values (${this.cartId}, ${this.cartBody.product_id}, ${this.cartBody.product_quantity}) 
-        on conflict (product_id)
+        ON CONFLICT (product_id)
         do update set
         product_quantity = ${this.cartBody.product_quantity}
         returning *
