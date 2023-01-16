@@ -3,6 +3,7 @@ import CartRouter from '../Routers/Cart/cart.router'
 import CategoriesRouter from '../Routers/Categories/categories.router'
 import FavoriteRouter from '../Routers/Favorites/favorites.router'
 import HistoryRouter from '../Routers/History/history.router'
+import OrdersRouter from '../Routers/Orders/orders.router'
 import ProductsRouter from '../Routers/Products/products.router'
 import UsersRouter from '../Routers/Users/users.router'
 
@@ -19,6 +20,7 @@ export default class App {
         app.use('/history', new HistoryRouter().execute())
         app.use('/favorite', new FavoriteRouter().execute())
         app.use('/cart', new CartRouter().execute())
+        app.use('/orders', new OrdersRouter().execute())
 
         return app
     }

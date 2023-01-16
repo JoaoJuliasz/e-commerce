@@ -57,3 +57,10 @@ create table if not exists cart_products (
     product_quantity int not null,
     primary key(product_id)
 );
+
+create table if not exists orders (
+    order_id serial primary key,
+    order_date bigint not null,
+    cart_id int references user_cart (id),
+    user_id int references users (id)
+);
