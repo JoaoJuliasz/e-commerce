@@ -12,6 +12,7 @@ export default class OrdersRouter {
         ordersRouter.post('/get', this.ordersController.httpGetOrders)
         ordersRouter.get('/:id', this.ordersController.httpGetOrder)
         ordersRouter.post('/', this.ordersController.httpCreateOrder)
+        ordersRouter.delete('/:id', this.ordersController.httpDeleteOrder)
 
         return ordersRouter
 

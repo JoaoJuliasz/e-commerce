@@ -3,6 +3,7 @@ import GetCartPaymentMethod from "../Cart/Executors/GetCart/GetCartPaymentMethod
 import GetCartProducts from "../Cart/Executors/GetCart/GetCartProducts";
 import GetCartTotal from "../Cart/Executors/GetCart/GetCartTotal";
 import CreateOrder from "./Executors/CreateOrder";
+import DeleteOrder from "./Executors/DeleteOrder";
 import GetOrder from "./Executors/GetOrder/GetOrder";
 import GetOrders from "./Executors/GetOrders";
 import { OrderBody } from "./types";
@@ -24,6 +25,10 @@ export default class OrdersModel {
 
     createOrder(orderBody: OrderBody) {
         return new CreateOrder(orderBody).execute()
+    }
+
+    deleteOrder(orderId: string) {
+        return new DeleteOrder(orderId).execute()
     }
 
 }
