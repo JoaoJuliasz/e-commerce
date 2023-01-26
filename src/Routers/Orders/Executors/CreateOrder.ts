@@ -12,6 +12,8 @@ export default class CreateOrder extends DbQuery {
             order_date: new Date().getTime()
         })
 
+        console.log(orderBody)
+
         const queryString = `insert into orders (order_date, cart_id, user_id)
             values (${orderBody.order_date}, ${orderBody.cart_id}, ${orderBody.user_id})
             returning *

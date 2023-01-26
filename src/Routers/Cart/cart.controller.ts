@@ -3,6 +3,7 @@ import HttpCreateCart from './ControllerFunctions/HttpCreateCart'
 import HttpAddItemOnCart from './ControllerFunctions/HttpAddItemOnCart'
 import HttpGetCart from './ControllerFunctions/HttpGetCart'
 import HttpDeleteCart from './ControllerFunctions/HttpDeleteCart'
+import HttpFinishCart from './ControllerFunctions/HttpFinishCart'
 
 export default class CartController {
 
@@ -12,6 +13,10 @@ export default class CartController {
 
     httpCreateCart(req: Request, res: Response) {
         return new HttpCreateCart({ req, res }).execute()
+    }
+
+    httpFinishCart(req: Request, res: Response) {
+        return new HttpFinishCart({ req, res }).execute()
     }
 
     httpAddItemOnCart(req: Request, res: Response) {

@@ -24,6 +24,7 @@ export default class OrdersModel {
     }
 
     createOrder(orderBody: OrderBody) {
+        console.log(orderBody)
         return new CreateOrder(orderBody).execute()
     }
 

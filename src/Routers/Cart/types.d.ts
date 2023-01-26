@@ -4,3 +4,9 @@ export type CartBody = {
     user_id: number,
     payment_method: string
 }
+
+export type FinishedCart = {
+    cart_id: string
+    payment_method: string
+    user_id: string
+}

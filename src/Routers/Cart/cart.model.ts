@@ -2,11 +2,12 @@ import { QueryResult } from "pg";
 import AddItemOnCart from "./Executors/AddItemOnCart";
 import CreateCart from "./Executors/CreateCart";
 import DeleteCart from "./Executors/DeleteCart";
+import FinishCart from "./Executors/FinishCart";
 import GetCart from "./Executors/GetCart/GetCart";
 import GetCartProducts from "./Executors/GetCart/GetCartProducts";
 import GetCartTotal from "./Executors/GetCart/GetCartTotal";
 import UpdateCartItem from "./Executors/UpdateCartItem";
-import { CartBody } from "./types";
+import { CartBody, FinishedCart } from "./types";
 
 export default class CartModel {
 
@@ -29,6 +30,10 @@ export default class CartModel {
 
     deleteCart(cartId: string) {
         return new DeleteCart(cartId).execute()
+    }
+
+    finishCart(cart: FinishedCart) {
+        return new FinishCart(cart).execute()
     }
 
 }
