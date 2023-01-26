@@ -4,6 +4,7 @@ import HttpCreateUsers from './ControllerFunctions/HttpCreateUsers'
 import HttpDeleteUser from './ControllerFunctions/HttpDeleteUser'
 import HttpGetUser from './ControllerFunctions/HttpGetUser'
 import HttpGetUserCart from './ControllerFunctions/HttpGetUserCart'
+import HttpGetUserOrders from './ControllerFunctions/HttpGetUserOrders'
 import HttpGetUserProducts from './ControllerFunctions/HttpGetUserProducts'
 import HttpGetUsers from './ControllerFunctions/HttpGetUsers'
 import HttpUpdateUser from './ControllerFunctions/HttpUpdateUser'
@@ -24,6 +25,10 @@ export default class UsersControler {
 
     httpGetUserCart(req: Request, res: Response) {
         return new HttpGetUserCart({ req, res }).execute()
+    }
+
+    httpGetUserOrders(req: Request, res: Response) {
+        return new HttpGetUserOrders({ req, res }).execute()
     }
 
     httpCreateUser(req: Request, res: Response) {

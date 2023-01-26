@@ -3,6 +3,7 @@ import CreateUser from "./Executors/CreateUser";
 import DeleteUser from "./Executors/DeleteUser";
 import GetUser from "./Executors/GetUser";
 import GetUserCart from "./Executors/GetUserCart";
+import GetUserOrders from "./Executors/GetUserOrders";
 import GetUserProducts from "./Executors/GetUserProducts";
 import GetUsers from "./Executors/GetUsers";
 import UpdateUser from "./Executors/UpdateUser";
@@ -28,6 +29,10 @@ export default class UsersModel {
 
     getUserCart(userId: string) {
         return new GetUserCart(userId).execute()
+    }
+
+    getUserOrders(userId: string) {
+        return new GetUserOrders(userId).execute()
     }
 
     updateUser(user: Omit<User, 'password'>, userId: string) {
